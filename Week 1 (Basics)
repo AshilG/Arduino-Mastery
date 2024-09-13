@@ -1,0 +1,44 @@
+Arduino is a platform and an environment. It's a collection of small microcontroller boards which 
+contain small bits of code. This allows it to interact with an Arduino IDE. The Arduino Uno is the most popular as
+it contains an ATmega328 chip running at 16 Mhz with digital and analog pins.
+
+
+void setup () - This code runs once where it initialises all the inputs and outputs that are needed for the project.
+void loop() - This code runs repeatedly keeping the same sequence as provided.
+
+Week 1 Project (BLINK)
+
+int LED = 6; //connecting variable named LED to digital Pin 6.
+
+void setup () { // This is used to initialise the pins that are needed for the project.
+pinMode(LED, OUTPUT); // This is used to set the LED pin as an output.
+}
+
+void loop ()  { // This void applies the initialised code to create a sequence and activates the code.
+
+digitalWrite(LED, HIGH); // This turns the led on.
+delay(1000); // This allows to leave the light on for 1s.
+digitalWrite(LED ,LOW); // this turns them off.
+delay(1000); // This ensures their off for 1s
+}
+
+Project 2 (LED button Control)
+
+int LED = 6; // Connects the digital pin 6 to a global variable.
+int Button = 10; //  // Connects the digital pin 10 to a global variable.
+int ButtonState; // The variable is used to control the state of the button.
+
+void setup () {
+pinMode(LED , OUTPUT); // initialises the pin as an output for the led.
+pinMode(Button, INPUT_PULLUP); // initialises the pin as an input for the button and input pull-up removes the need for the addition of a resistor since ardunio contains an internal resistor.
+}
+
+void loop () {
+ButtonState = digitalRead(Button); // This connects the button signal to a variable named ButtonState.
+if(ButtonState == HIGH){ // the if loop sets the actions that occur when the button is pressed or not.
+digitalWrite(LED, HIGH);
+}else{
+digitalWrite(LED, LOW);
+}
+}
+
