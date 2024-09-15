@@ -6,6 +6,9 @@ it contains an ATmega328 chip running at 16 Mhz with digital and analog pins.
 void setup () - This code runs once where it initialises all the inputs and outputs that are needed for the project.
 void loop() - This code runs repeatedly keeping the same sequence as provided.
 
+Digital Pin - These pins have 2 states which are on or off (HIGH or LOW). When the input is HIGH it outputs 5V while on LOW it outputs 0V.
+INPUT_PULLUP - The ATmega328 contains a built-in resistor that can be initialised with the code. This creates an active high when the input is not pressed and ground when pressed.
+
 Week 1 Project (BLINK)
 
 int LED = 6; //connecting variable named LED to digital Pin 6.
@@ -29,16 +32,63 @@ int Button = 10; //  // Connects the digital pin 10 to a global variable.
 int ButtonState; // The variable is used to control the state of the button.
 
 void setup () {
-pinMode(LED , OUTPUT); // initialises the pin as an output for the led.
-pinMode(Button, INPUT_PULLUP); // initialises the pin as an input for the button and input pull-up removes the need for the addition of a resistor since ardunio contains an internal resistor.
+pinMode(LED, OUTPUT); // initialises the pin as an output for the LED.
+pinMode(Button, INPUT_PULLUP); // initialises the pin as an input for the button and input pull-up removes the need for the addition of a resistor since Arduino contains an internal resistor.
 }
 
 void loop () {
-ButtonState = digitalRead(Button); // This connects the button signal to a variable named ButtonState.
+ButtonState == digitalRead(Button); // This connects the button signal to a variable named ButtonState.
 if(ButtonState == HIGH){ // the if loop sets the actions that occur when the button is pressed or not.
 digitalWrite(LED, HIGH);
 }else{
 digitalWrite(LED, LOW);
 }
+}
+
+
+Analog Pin - These pins can produce between 0V - 5V, such as a sine wave or audio wave.
+Potentiometer - Pin 1 is for 5V, Pin 2 is for Analog and Pin 3 is for ground. The potentiometer contains resistors on Pin 1 and Pin 3 where toggling between changes the resistance on either side.
+
+
+Project 3 ( Light Control With Pot)
+
+int LED = 6; // Connects the digital pin 6 to a global variable.
+int PotentioMeter = A0 // Connect analog pin A0 to variable.
+int PotValue; // Variable to read Potentiometer value.
+
+void setup (){
+pinMode(PotentioMeter ,INPUT); //Initialises the pot as an input.
+PinMode(LED, OUTPUT); // initialises the pin as an output for the LED.
+}
+
+void loop (){
+PotValue = analogRead(PotentioMeter); // Allows to read the value of the potentiometer.
+
+digitalWrite(LED, PotValue); // This allows to control the brightness of the light.
+
+}
+
+Serial Monitor - Displays the value of the Pot or any value that is created on serial print.
+
+Project 4 ( Light Control With Pot and Serial Monitor)
+
+int LED = 6; // Connects the digital pin 6 to a global variable.
+int PotentioMeter = A0 // Connect analog pin A0 to variable.
+int PotValue; // Variable to read Potentiometer value.
+
+
+void setup (){
+pinMode(PotentioMeter ,INPUT); //Initialises the pot as an input.
+PinMode(LED, OUTPUT); // initialises the pin as an output for the LED.
+serial.begin(9600); // initialises the serial monitor
+}
+
+void loop (){
+PotValue = analogRead(PotentioMeter); // Allows to read the value of the potentiometer.
+
+digitalWrite(LED, PotValue); // This allows to control the brightness of the light.
+
+serial.print(PotValue);
+
 }
 
